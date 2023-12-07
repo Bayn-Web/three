@@ -1,16 +1,51 @@
-# Vue 3 + TypeScript + Vite
+## learn three.js by easy example
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+to learn three.js by easy example, you can use the following command:
 
-## Recommended IDE Setup
+```bash
+git clone https://github.com/Bayn-Web/three.git
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+cd three
 
-## Type Support For `.vue` Imports in TS
+npm install
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+npm run dev
+```
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+# explain this project
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+here is a way to learn three.js in some aspects (especially for beginners)
+
+we will foces on how to use three.js to create a simple scene, and how to use three.js to create a simple animation.
+
+# what's order of the project?
+
+to help me myself lean three.js and share it with you，regardless of whether you are an explorer or an expert.
+
+btw,three.js is too large for me to read all of it. so I will focus on some aspects of it.
+
+1. how to create a simple scene
+2. how to use shader in three.js
+3. how to use some easy math in three.js
+4. how to use tween[https://tweenjs.github.io/] to create some easy animation.
+
+
+# intheend 
+
+i will be glad if you can help me to improve this project.
+
+# thanks
+
+thanks for your attention.
+
+# contact me
+
+if you have any question, please contact me by email:
+
+bayn1404@gmail.com
+
+or you can send message to me here
+
+# license
+
+MIT
