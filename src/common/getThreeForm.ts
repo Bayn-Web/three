@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { listenResize } from './utils';
+import { listenResize, dbClkfullScreen } from './utils';
 
 
 export const getThreeForm = (canvas: HTMLCanvasElement) => {
@@ -23,6 +23,7 @@ export const getThreeForm = (canvas: HTMLCanvasElement) => {
     scene.add(camera)
     const controls = new OrbitControls(camera, canvas as HTMLElement)
     listenResize(sizes, camera, renderer)
+    dbClkfullScreen(canvas)
     return {
         scene,
         camera,

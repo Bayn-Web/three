@@ -1,24 +1,27 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
-
+let filenames:any[] = [];
 const basename = (path: string) => path.replace(/^.*[\\\/]/, '').replace(/\.vue$/, '');
-const getExamples = async (): Promise<RouteRecordRaw[]> => {
+const getExamples = (): RouteRecordRaw[] => {
     const files = import.meta.glob('../examples/*.vue');
-    const filenames = Object.keys(files).map((key) => {
-        console.log(basename(key))
+    filenames = Object.keys(files).map((key) => {
         return {
             name: basename(key),
             path: '/' + basename(key),
             component: () => import(`../examples/${basename(key)}.vue`)
         }
     });
-    return filenames;
+    return [{
+        path: '/',
+        component: () => import('../App.vue'),
+        children: filenames
+    }];
 };
-
+console.log(getExamples());
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes: await getExamples()
+    routes: getExamples()
 });
 
-export { router };
+export { router, filenames };

@@ -12,7 +12,6 @@ const radom = () => {
 }
 onMounted(() => {
     const canvas = document.querySelector('#mainCanvas')
-
     // Scene
     const scene = new THREE.Scene()
     const positions = [{
