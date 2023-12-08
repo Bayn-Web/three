@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { listenResize } from './utils';
 
 
 export const getThreeForm = (canvas: HTMLCanvasElement) => {
@@ -18,10 +19,10 @@ export const getThreeForm = (canvas: HTMLCanvasElement) => {
     renderer.setClearColor(new THREE.Color('#000000'), 1);
 
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1)
-    camera.position.set(0, 0, 4)
+    camera.position.set(0, 0, 3)
     scene.add(camera)
     const controls = new OrbitControls(camera, canvas as HTMLElement)
-
+    listenResize(sizes, camera, renderer)
     return {
         scene,
         camera,
