@@ -26,7 +26,7 @@ onMounted(() => {
     })
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(new THREE.Color('#32373E'), 1);
+    renderer.setClearColor(new THREE.Color('#00ff00'), 1);
     const attrPositions: number[] = [];
 
     positions.forEach((p) => {

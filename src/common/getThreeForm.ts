@@ -22,6 +22,7 @@ export const getThreeForm = (canvas: HTMLCanvasElement) => {
     camera.position.set(0, 0, 3)
     scene.add(camera)
     const controls = new OrbitControls(camera, canvas as HTMLElement)
+    controls.enableDamping = true
     listenResize(sizes, camera, renderer)
     dbClkfullScreen(canvas)
     return {

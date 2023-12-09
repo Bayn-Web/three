@@ -78,6 +78,7 @@ onMounted(() => {
             discard;
         }`
   })
+  pointMaterial.needsUpdate = true
   const count = 2000
   const positions = new Float32Array(count * 3) // 每个点由三个坐标值组成（x, y, z）
   const positions2 = new Float32Array(count * 3) // 每个点由三个坐标值组成（x, y, z）
@@ -109,7 +110,7 @@ onMounted(() => {
     height: window.innerHeight,
   }
 
-  const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 0)
+  const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1)
   camera.position.set(0, 0, 0)
 
   const controls = new OrbitControls(camera, canvas)
@@ -126,8 +127,6 @@ onMounted(() => {
 
   const tick = () => {
     controls.update()
-    pointMaterial.needsUpdate = true
-    camera.position.x += (Math.random()) * 0.001
     camera.position.y += (Math.random() - 0.5) * 0.001
     camera.position.z += (Math.random()) * 0.01
     // Render

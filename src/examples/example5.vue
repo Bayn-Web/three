@@ -57,7 +57,7 @@ const starsSea = (canvas: HTMLCanvasElement) => {
               discard;
           }`
     })
-    const count = 3000
+    const count = 2000
     const originPositions = new Float32Array(3)
     originPositions[0] = 0
     originPositions[1] = 0
@@ -102,8 +102,8 @@ const starsSea = (canvas: HTMLCanvasElement) => {
         height: window.innerHeight,
     }
 
-    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 0)
-    camera.position.set(0, 0, -4)
+    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1)
+    camera.position.set(0, 0, 4)
 
     const controls = new OrbitControls(camera, canvas)
     controls.enableDamping = true
