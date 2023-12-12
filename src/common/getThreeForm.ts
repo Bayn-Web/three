@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { listenResize, dbClkfullScreen } from './utils';
 
 
-export const getThreeForm = (canvas: HTMLCanvasElement) => {
+export const getThreeForm = (canvas: HTMLCanvasElement, noControl: boolean = false) => {
     const sizes = {
         width: window.innerWidth,
         height: window.innerHeight
@@ -21,8 +21,11 @@ export const getThreeForm = (canvas: HTMLCanvasElement) => {
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1)
     camera.position.set(0, 0, 3)
     scene.add(camera)
-    const controls = new OrbitControls(camera, canvas as HTMLElement)
-    controls.enableDamping = true
+    let controls = undefined;
+    if (!noControl) {
+        controls = new OrbitControls(camera, canvas as HTMLElement)
+        controls.enableDamping = true
+    }
     listenResize(sizes, camera, renderer)
     dbClkfullScreen(canvas)
     return {
