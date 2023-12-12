@@ -8,9 +8,23 @@ import {
     ref, onMounted
 } from 'vue';
 import { getThreeForm } from '../common/getThreeForm';
+import Stats from 'three/examples/jsm/libs/stats.module.js'
 import shader from '../glsl/sea.glsl?raw';
 const mainCanvas = ref<HTMLCanvasElement | null>(null);
 onMounted(() => {
+    let stats: any = new Stats()
+
+    // 设置监视器面板，传入面板id（0: fps, 1: ms, 2: mb）
+    stats.setMode(0)
+
+    // 设置监视器位置
+    stats.domElement.style.position = 'absolute'
+    stats.domElement.style.right = '10px'
+    stats.domElement.style.left = ''
+    stats.domElement.style.top = '0px'
+
+    // 将监视器添加到页面中
+    document.body.appendChild(stats.domElement)
     const {
         scene,
         camera,
@@ -46,6 +60,7 @@ onMounted(() => {
     scene.add(mesh);
     let f = false;
     const tick = (time: number) => {
+        stats.update()
         time *= 0.001;
         uniforms.iTime.value = time;
         // slow it down
@@ -53,6 +68,7 @@ onMounted(() => {
         f = !f
         if (f) {
             renderer.render(scene, camera)
+            requestAnimationFrame(() => undefined)
         }
         requestAnimationFrame(tick)
     }
