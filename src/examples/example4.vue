@@ -91,7 +91,7 @@ const starsSea = (canvas: HTMLCanvasElement) => {
     listenResize(sizes, camera, renderer)
 
     const tick = () => {
-        controls.update()
+        controls!.update()
         pointMaterial.needsUpdate = true
         renderer.render(scene, camera)
         requestAnimationFrame(tick)

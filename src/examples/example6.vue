@@ -44,7 +44,7 @@ onMounted(() => {
     scene.add(plane);
     renderer.shadowMap.enabled = true;
     const tick = () => {
-        controls.update()
+        controls!.update()
         renderer.render(scene, camera)
         requestAnimationFrame(tick)
     }
