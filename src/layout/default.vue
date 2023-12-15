@@ -1,8 +1,8 @@
 <template>
+    <component :is="value" />
     <template v-for="item in filenames">
         <button @click="switchComponent(item.path)">{{ item.path }}</button>
     </template>
-    <component :is="value" />
 </template>
 
 <script setup lang="ts">

@@ -8,7 +8,8 @@ import * as TWEEN from '@tweenjs/tween.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import {
     ref,
-    onMounted
+    onMounted,
+    onBeforeUnmount
 } from 'vue';
 import { generateColorCode, listenResize, dbClkfullScreen } from '../common/utils';
 const mainCanvas = ref<HTMLCanvasElement | null>(null);
@@ -121,11 +122,17 @@ const starsSea = (canvas: HTMLCanvasElement) => {
         TWEEN.update();
         pointMaterial.needsUpdate = true
         renderer.render(scene, camera)
-        requestAnimationFrame(tick)
+        f && requestAnimationFrame(tick)
     }
 
     tick()
 }
+
+let f = true
+
+onBeforeUnmount(() => {
+    f = false
+})
 </script>
 
 <style scoped></style>

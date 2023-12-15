@@ -2,8 +2,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { listenResize, generateColorCode } from '../common/utils';
-import { onMounted } from 'vue';
-
+import { onMounted, onBeforeUnmount } from 'vue';
+let f = true
 onMounted(() => {
   const canvas = document.querySelector('#mainCanvas') as HTMLCanvasElement
   const scene = new THREE.Scene()
@@ -131,10 +131,14 @@ onMounted(() => {
     camera.position.z += (Math.random()) * 0.01
     // Render
     renderer.render(scene, camera)
-    requestAnimationFrame(tick)
+    f && requestAnimationFrame(tick)
   }
 
   tick()
+})
+
+onBeforeUnmount(() => {
+  f = false
 })
 </script>
 

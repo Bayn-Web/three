@@ -7,7 +7,8 @@ import * as THREE from 'three';
 import { getThreeForm } from '../common/getThreeForm';
 import {
     ref,
-    onMounted
+    onMounted,
+    onBeforeUnmount
 } from 'vue';
 import { generateColorCode, listenResize, dbClkfullScreen } from '../common/utils';
 const mainCanvas = ref<HTMLCanvasElement | null>(null);
@@ -94,11 +95,17 @@ const starsSea = (canvas: HTMLCanvasElement) => {
         controls!.update()
         pointMaterial.needsUpdate = true
         renderer.render(scene, camera)
-        requestAnimationFrame(tick)
+        f && requestAnimationFrame(tick)
     }
 
     tick()
 }
+
+let f = true
+
+onBeforeUnmount(() => {
+    f = false
+})
 </script>
 
 <style scoped></style>

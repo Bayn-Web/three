@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { onMounted } from 'vue';
+import { onBeforeUnmount, onMounted } from 'vue';
 
 const sizes = {
     width: window.innerWidth,
@@ -75,9 +75,14 @@ onMounted(() => {
     const tick = () => {
         controls.update()
         renderer.render(scene, camera)
-        requestAnimationFrame(tick)
+        f && requestAnimationFrame(tick)
     }
     tick()
+})
+
+let f = true
+onBeforeUnmount(() => {
+    f = false
 })
 </script>
 

@@ -5,14 +5,14 @@
 <script lang="ts" setup>
 import * as THREE from 'three';
 import {
-    ref, onMounted
+    ref, onMounted, onBeforeUnmount
 } from 'vue';
 import { getThreeForm } from '../common/getThreeForm';
 import Stats from 'three/examples/jsm/libs/stats.module.js'
 import shader from '../glsl/sea.glsl?raw';
+let stats: any = new Stats()
 const mainCanvas = ref<HTMLCanvasElement | null>(null);
 onMounted(() => {
-    let stats: any = new Stats()
 
     // 设置监视器面板，传入面板id（0: fps, 1: ms, 2: mb）
     stats.setMode(0)
@@ -58,21 +58,28 @@ onMounted(() => {
     var geometry = new THREE.PlaneGeometry(2, 1);
     var mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
-    let f = false;
+    let flag = false;
     const tick = (time: number) => {
         stats.update()
         time *= 0.001;
         uniforms.iTime.value = time;
         // slow it down
         // make gpu render in time
-        f = !f
-        if (f) {
+        flag = !flag
+        if (flag) {
             renderer.render(scene, camera)
             requestAnimationFrame(() => undefined)
         }
-        requestAnimationFrame(tick)
+        f && requestAnimationFrame(tick)
     }
     tick(100000)
+})
+
+let f = true
+
+onBeforeUnmount(() => {
+    f = false
+    stats.domElement.remove()
 })
 </script>
 

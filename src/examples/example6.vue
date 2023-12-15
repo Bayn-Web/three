@@ -4,6 +4,7 @@
 
 <script lang="ts" setup>
 import {
+    onBeforeUnmount,
     onMounted,
     ref
 } from 'vue';
@@ -46,10 +47,16 @@ onMounted(() => {
     const tick = () => {
         controls!.update()
         renderer.render(scene, camera)
-        requestAnimationFrame(tick)
+        f && requestAnimationFrame(tick)
     }
 
     tick()
+})
+
+let f = true
+
+onBeforeUnmount(() => {
+    f = false
 })
 </script>
 

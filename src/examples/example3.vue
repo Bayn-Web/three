@@ -7,7 +7,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import {
     ref,
-    onMounted
+    onMounted,
+    onBeforeUnmount
 } from 'vue';
 import { generateColorCode, listenResize } from '../common/utils';
 const mainCanvas = ref<HTMLCanvasElement | null>(null);
@@ -103,11 +104,16 @@ const starsSea = (canvas: HTMLCanvasElement) => {
         distence = distence * 0.99;
         sphereGeometry.rotateY(distence)
         renderer.render(scene, camera)
-        requestAnimationFrame(tick)
+        console.log('ex3')
+        f && requestAnimationFrame(tick)
     }
 
     tick()
 }
+let f = true
+onBeforeUnmount(() => {
+    f = false
+})
 </script>
 
 <style scoped></style>
