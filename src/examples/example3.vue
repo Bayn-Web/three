@@ -99,12 +99,10 @@ const starsSea = (canvas: HTMLCanvasElement) => {
     let distence = 0.1
     const tick = () => {
         controls.update()
-        pointMaterial.needsUpdate = true
         camera.position.z += distence;
         distence = distence * 0.99;
         sphereGeometry.rotateY(distence)
         renderer.render(scene, camera)
-        console.log('ex3')
         f && requestAnimationFrame(tick)
     }
 

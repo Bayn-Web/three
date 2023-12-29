@@ -24,7 +24,7 @@ onMounted(() => {
 
     dirLight.position.set(0, 3, 2)
     dirLight.target.position.set(0, 0, 0)
-    dirLight.shadow.mapSize.set(1024, 1024)
+    dirLight.shadow.mapSize.set(100, 100)
     dirLight.castShadow = true
 
     const lights = [dirLight, ambLight]
