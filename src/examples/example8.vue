@@ -31,7 +31,7 @@ onMounted(() => {
   const textureLoader = new THREE.TextureLoader();
 
   // 加载纹理图像
-  const texture = textureLoader.load("../../public/bk.png", () => {
+  const texture = textureLoader.load("/bk.png", () => {
     // 纹理加载完成后，更新材质
     material.needsUpdate = true;
   });
